@@ -1,0 +1,18 @@
+{
+  "name": "n-search-app",
+  "version": "1.0.0",
+  "description": "N-Search built on Electron-js",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "packager": "electron-packager ./ --platform=win32"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^30.0.6"
+  },
+  "dependencies": {
+    "electron-packager": "^17.1.2"
+  }
+}
