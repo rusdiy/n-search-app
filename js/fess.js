@@ -46,6 +46,8 @@ $(function(){
     }
     
     var searchQuery = $.trim($('#searchQuery').val());
+    var loginUser = $.trim($('#whoami').text());
+    var macaddress = $.trim($('#macaddress').text());
     if(searchQuery.length != 0) {
       var urlBuf = [];
       $searchButton.attr('disabled', true);
@@ -53,9 +55,9 @@ $(function(){
         '?q=', encodeURIComponent(searchQuery),
         '&start=', start,
         '&num=', num,
-        '&ex_q=', encodeURIComponent(extraQuery)
-        // '&loginUser=', "hahahha",
-        // '&macAddress=', "1212112",
+        '&ex_q=', encodeURIComponent(extraQuery),
+        '&loginUser=', loginUser,
+        '&macAddress=', macaddress,
       );
       
       // Send AJAX request

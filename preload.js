@@ -6,5 +6,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
     ipcRenderer.on('whoami-result', (event, result) => {
       callback(result);
     });
-  }
+  },
+  onMacAddressResult: (callback) => ipcRenderer.on('macaddress-result', (event, result) => callback(result))
 });

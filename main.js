@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const { exec } = require('child_process');
 const path = require('path');
 const os = require('os');
+const macaddress = require('macaddress');
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -32,6 +33,16 @@ function createWindow() {
         }
         mainWindow.webContents.send('whoami-result', stdout.trim());
         return;
+      });
+    })
+    .then(() => {
+      macaddress.one((err, mac) => {
+        if (err) {
+          console.error('Error retrieving MAC address:', err);
+          mainWindow.webContents.send('macaddress-result', 'Error retrieving MAC address');
+          return;
+        }
+        mainWindow.webContents.send('macaddress-result', mac);
       });
     })
 

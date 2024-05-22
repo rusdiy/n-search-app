@@ -8,5 +8,9 @@
 // });
 
 window.electronAPI.onWhoamiResult((result) => {
-  $('#whoami-result').html(`<p>Hello, <b>${result}</b>!</p>`);
+  document.getElementById('whoami').textContent = result;
+});
+
+window.electronAPI.onMacAddressResult((result) => {
+  document.getElementById('macaddress').textContent = result;
 });
