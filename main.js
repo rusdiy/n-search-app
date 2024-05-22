@@ -12,21 +12,42 @@ function createWindow() {
       contextIsolation: true,
       enableRemoteModule: false,
     },
+    autoHideMenuBar: true,
   });
 
-  mainWindow.loadFile('index.html');
+  mainWindow.loadFile('index.html')
+    .then(() => {
+      const platform = os.platform();
+      let command;
+
+      if (platform === 'win32') {
+        command = `echo %USERNAME%`;
+      } else {
+        command = 'whoami';
+      }
+      exec(command, (err, stdout) => {
+        if (err) {
+          console.error('Error getting logon user:', err);
+          return;
+        }
+        mainWindow.webContents.send('whoami-result', stdout.trim());
+        return;
+      });
+    })
+
+  return mainWindow;
 }
 
 app.whenReady().then(() => {
   createWindow();
-
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
-  });
 });
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
+});
+
+app.on('activate', () => {
+  if (BrowserWindow.getAllWindows().length === 0) createWindow();
 });
 
 // IPC handler to open a file with its default application based on the OS
@@ -49,17 +70,5 @@ ipcMain.on('open-file', (event, filePath) => {
     if (err) {
       console.error('Error opening file:', err);
     }
-  });
-});
-
-// IPC handler to execute 'whoami' command
-ipcMain.on('get-whoami', (event) => {
-  exec('whoami', (err, stdout) => {
-    if (err) {
-      console.error('Error executing whoami:', err);
-      event.reply('whoami-result', 'Error retrieving username');
-      return;
-    }
-    event.reply('whoami-result', stdout.trim());
   });
 });
