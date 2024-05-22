@@ -8,5 +8,5 @@
 // });
 
 window.electronAPI.onWhoamiResult((result) => {
-  $('#whoami-result').html(`Hello, <b>${result}</b>!`);
+  $('#whoami-result').html(`<p>Hello, <b>${result}</b>!</p>`);
 });
