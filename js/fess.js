@@ -132,11 +132,13 @@ $(function(){
       
       // Display pagination information
       buf = [];
-      buf.push(`<div class="pagination flex-container">`);
-      buf.push(`<a id="prevPageLink" href="#" class="arrow left" ${data.prev_page ? "" : "disabled"}>&larr;</a>`);
-      buf.push(`<span class="page-number">${page_number}</span>`)
-      buf.push(`<a id="nextPageLink" href="#" class="arrow right" ${data.next_page ? "" : "disabled"}>&rarr;</a>`)
-      buf.push(`</div>`)
+      buf.push(
+        `<div class="pagination flex-container">`,
+        `<a id="prevPageLink" href="#" class="arrow left" ${data.prev_page ? "" : "disabled"}>&larr;</a>`,
+        `<span class="page-number">${page_number}</span>`,
+        `<a id="nextPageLink" href="#" class="arrow right" ${data.next_page ? "" : "disabled"}>&rarr;</a>`,
+        `</div>`
+      )
       $(buf.join("")).appendTo($result);
     }
     $('#searchStart').val(offset);
@@ -147,26 +149,16 @@ $(function(){
   // Function to build HTML for a search result item
   var buildSearchResultItem = function(result) {
     
-    url = buildUrl(result.url_link);
-    
     var buf = [];
-    buf.push('<li><h3 class="title">', '<a href="', url, '" target="_blank">', result.title,
-      '</a></h3><div class="body">', result.content_description,
-      '<br/><p><cite>', result.site, '</cite> | ',
-      `<button class="link" onclick="copyText('${result.url_link}')">Copy Path</button></p>`, '</li>');
+    buf.push(
+      '<li>',
+      '<h3>',
+      `<button class="link" onclick="openFile('${result.url_link}')">${result.title}</button>`,
+      '</h3>',
+      '<div class="body">', result.content_description, '</div>',
+      '</li>');
     return buf.join("");
   };
-
-  var buildUrl = function(url) {
-    if (url.includes("file:")) {
-      url = url.replace("file:", "");
-      url = encodeURIComponent(url);
-      url = btoa(url);
-      return "view.php?path=" + url
-    }
-
-    return url
-  }
 
   function showLoading() {
     var $result = $('#result');

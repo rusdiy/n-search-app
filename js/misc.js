@@ -38,3 +38,22 @@ function unsecuredCopyToClipboard(text) {
 function putToSearchBox(text) {
     $searchQuery = $('#searchQuery').val(text);
 }
+
+function openFile(filePath) {
+    if (filePath.startsWith("file://")) {
+        filePath = filePath.replace(/^file:/, '');
+        filePath = filePath.replaceAll("/", "\\");
+    }
+    window.electronAPI.openFile(filePath);
+    return;
+}
+
+function openDir(filePath) {
+    if (filePath.startsWith("file://")) {
+        filePath = filePath.replace(/^file:/, '');
+        filePath = filePath.replaceAll("/", "\\");
+    }
+    directoryPath = filePath.substring(0, filePath.lastIndexOf('/'));
+    window.electronAPI.openFile(directoryPath);
+    return;
+}
