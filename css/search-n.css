@@ -69,6 +69,7 @@ body {
   cursor: pointer;
   outline: inherit;
   text-decoration: underline;
+  text-align: justify;
   color: blue;
 }
 

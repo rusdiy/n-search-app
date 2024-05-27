@@ -151,15 +151,23 @@ $(function(){
     
     var buf = [];
     buf.push(
+      '<table style="width: 100%;">',
+      '<tr style="vertical-align: top;">',
+      '<td align="justify">',
       '<li>',
       '<h3>',
       `<button class="link" onclick="openFile('${result.url_link}')">${result.title}</button>`,
       '</h3>',
+      '<div class="body">', result.content_description, '</div>',
+      '</td>',
+      '<td align="right">',
       `<button class="btn" onclick="openDir('${result.url_link}')">`,
       '<img class="icon" src="internal/icon/folder-open-solid.svg" />',
       `</button>`,
-      '<div class="body">', result.content_description, '</div>',
-      '</li>');
+      '</li>',
+      '</td>',
+      '</tr>',
+      '</table>',);
     return buf.join("");
   };
 
