@@ -155,6 +155,9 @@ $(function(){
       '<h3>',
       `<button class="link" onclick="openFile('${result.url_link}')">${result.title}</button>`,
       '</h3>',
+      `<button class="btn" onclick="openDir('${result.url_link}')">`,
+      '<img class="icon" src="internal/icon/folder-open-solid.svg" />',
+      `</button>`,
       '<div class="body">', result.content_description, '</div>',
       '</li>');
     return buf.join("");

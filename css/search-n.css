@@ -77,6 +77,20 @@ body {
   color: purple;
 }
 
+/* Button Link */
+.btn {
+  background: white;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.btn img {
+  width: 1em;
+  height: 1em;
+  margin: 1px;
+}
+
 /* Pagination */
 
 .pagination {
