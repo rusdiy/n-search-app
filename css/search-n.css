@@ -112,6 +112,19 @@ body {
   font-size: 18px;
 }
 
+.input-text {
+  border-radius: 20px;
+  border: 1px solid whitesmoke;
+  width: 4rem;
+  height: 2rem;
+  padding-left: 10px;
+}
+
+.input-text:focus {
+  outline: none;
+  border: 1px solid gray;
+}
+
 
 #result {
   margin-left: 5rem;

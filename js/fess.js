@@ -28,18 +28,21 @@ $(function(){
     localStorage.setItem("start", start);
     
     extraQuery = ""
-    var activeTab = document.querySelector('.tab a.active').innerText;
+    var activeTab = $.trim($('input[name="mimetype"]:checked').val());
     switch (activeTab) {
-      case "Images":
+      case "images":
         extraQuery = `mimetype:"image/*"`;
         break;
-      case "PDF":
+      case "pdf":
         extraQuery = `mimetype:"application/pdf"`;
         break;
-      case "Videos":
+      case "videos":
         extraQuery = `mimetype:"video/*"`;
         break;
-      case "General":
+      case "filetype":
+        extraQuery = `filetype:"${$.trim($('#filetype').val())}"`;
+        break;
+      case "all":
         break;
       default:
         break;
@@ -141,8 +144,6 @@ $(function(){
       )
       $(buf.join("")).appendTo($result);
     }
-    $('#searchStart').val(offset);
-    $('#searchNum').val(parseInt(localStorage.getItem("num")));
     $(document).scrollTop(0);
   };
 

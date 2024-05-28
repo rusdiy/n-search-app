@@ -57,3 +57,7 @@ function openDir(filePath) {
     window.electronAPI.openFile(directoryPath);
     return;
 }
+
+$("#filetype").focus(function(){
+    $("input[name=mimetype][value=filetype]").prop("checked",true);
+});
