@@ -137,9 +137,9 @@ $(function(){
       buf = [];
       buf.push(
         `<div class="pagination flex-container">`,
-        `<a id="prevPageLink" href="#" class="arrow left" ${data.prev_page ? "" : "disabled"}>&larr;</a>`,
+        `<button class="link" id="prevPageLink" href="#" class="arrow left" ${data.prev_page ? "" : "disabled"}>&larr;</button>`,
         `<span class="page-number">${page_number}</span>`,
-        `<a id="nextPageLink" href="#" class="arrow right" ${data.next_page ? "" : "disabled"}>&rarr;</a>`,
+        `<button class="link" id="nextPageLink" href="#" class="arrow right" ${data.next_page ? "" : "disabled"}>&rarr;</button>`,
         `</div>`
       )
       $(buf.join("")).appendTo($result);

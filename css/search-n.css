@@ -74,9 +74,15 @@ body {
   color: blue;
 }
 
-.link:hover {
+.link:hover:enabled {
   text-decoration: underline;
   color: purple;
+}
+
+.link:disabled {
+  color: gray;
+  cursor: not-allowed;
+  text-decoration: none;
 }
 
 /* Button Link */
