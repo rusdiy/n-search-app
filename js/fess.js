@@ -79,6 +79,7 @@ $(function(){
           $searchButton.attr('disabled', false);
       });
     }
+    showPopularWords();
     return false;
   };
 
