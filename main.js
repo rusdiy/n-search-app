@@ -14,7 +14,10 @@ function createWindow() {
       enableRemoteModule: false,
     },
     autoHideMenuBar: true,
-    icon: path.join(__dirname, 'n-global.ico'),
+    icon: path.join(__dirname, 'icon.ico'),
+    webPreferences: {
+     devTools: false
+     }
   });
 
   mainWindow.loadFile('index.html')

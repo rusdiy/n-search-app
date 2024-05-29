@@ -5,15 +5,30 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "packager": "electron-packager ./ --platform=win32"
+    "packager": "electron-packager ./ --platform=win32",
+    "build": "electron-builder build --win portable"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^30.0.6"
+    "electron": "^30.0.6",
+    "electron-builder": "^24.13.3",
+    "electron-packager": "^17.1.2"
   },
   "dependencies": {
-    "electron-packager": "^17.1.2",
     "macaddress": "^0.5.3"
+  },
+  "build": {
+    "productName": "N-Search",
+    "appId": "n_search_app",
+    "win": {
+      "target": ["portable"]
+    },
+    "portable": {
+      "artifactName": "n-search.exe"
+    },
+    "directories": {
+      "buildResources": "buildResources"
+    }
   }
 }
