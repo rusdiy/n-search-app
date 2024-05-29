@@ -14,7 +14,7 @@ function createWindow() {
       enableRemoteModule: false,
     },
     autoHideMenuBar: true,
-    icon: path.join(__dirname, 'niwicon.png'),
+    icon: path.join(__dirname, 'n-global.ico'),
   });
 
   mainWindow.loadFile('index.html')
