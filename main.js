@@ -14,10 +14,7 @@ function createWindow() {
       enableRemoteModule: false,
     },
     autoHideMenuBar: true,
-    icon: path.join(__dirname, 'icon.ico'),
-    webPreferences: {
-     devTools: false
-     }
+    icon: path.join(__dirname, 'icon.ico')
   });
 
   mainWindow.loadFile('index.html')
