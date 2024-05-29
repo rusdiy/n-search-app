@@ -161,6 +161,7 @@ $(function(){
       `<button class="link" onclick="openFile('${result.url_link}')">${result.title}</button>`,
       '</h3>',
       '<div class="body">', result.content_description, '</div>',
+      `<p><cite>${result.site}</cite></p>`,
       '</td>',
       '<td align="right">',
       `<button class="btn" onclick="openDir('${result.url_link}')">`,
