@@ -1,11 +1,3 @@
-// Tab
-$(document).ready(function(){
-    $('.tab a').click(function(){
-        $('.tab a').removeClass('active');
-        $(this).addClass('active');
-    });
-});
-
 // Copy Text
 function copyText(text) {
     if (text.startsWith("file://")) {
