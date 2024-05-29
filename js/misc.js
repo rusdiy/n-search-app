@@ -49,12 +49,13 @@ function openFile(filePath) {
 }
 
 function openDir(filePath) {
+    filePath = filePath.substring(0, filePath.lastIndexOf('/'));
     if (filePath.startsWith("file://")) {
         filePath = filePath.replace(/^file:/, '');
         filePath = filePath.replaceAll("/", "\\");
     }
-    directoryPath = filePath.substring(0, filePath.lastIndexOf('/'));
-    window.electronAPI.openFile(directoryPath);
+
+    window.electronAPI.openFile(filePath);
     return;
 }
 
