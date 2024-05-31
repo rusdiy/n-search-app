@@ -14,3 +14,7 @@ window.electronAPI.onWhoamiResult((result) => {
 window.electronAPI.onMacAddressResult((result) => {
   document.getElementById('macaddress').textContent = result;
 });
+
+window.electronAPI.getVersion((result) => {
+  document.getElementById('appVersion').textContent = result;
+});

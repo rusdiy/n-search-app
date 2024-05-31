@@ -8,6 +8,8 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    minWidth: 800,
+    minHeight: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
@@ -46,6 +48,12 @@ function createWindow() {
         mainWindow.webContents.send('macaddress-result', mac);
       });
     })
+    .then(() => {
+      mainWindow.webContents.send('app-version', app.getVersion());
+    })
+    .catch((error) => {
+      console.error('Error loading index.html:', error);
+    });
 
   return mainWindow;
 }

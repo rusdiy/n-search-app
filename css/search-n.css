@@ -131,6 +131,20 @@ body {
   border: 1px solid gray;
 }
 
+.logo-container {
+  position: relative;
+  align-items: center;
+}
+
+.version-text {
+  position: absolute;
+  top: 65%;
+  left: 75%;
+  padding: 2px 5px;
+  font-size: 0.75rem;
+  color: #000;
+  border-radius: 3px;
+}
 
 #result {
   margin-left: 5rem;
