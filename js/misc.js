@@ -36,6 +36,7 @@ function openFile(filePath) {
         filePath = filePath.replace(/^file:/, '');
         filePath = filePath.replaceAll("/", "\\");
     }
+    insertFileAccessLog(filePath, false);
     window.electronAPI.openFile(filePath);
     return;
 }
@@ -46,9 +47,26 @@ function openDir(filePath) {
         filePath = filePath.replace(/^file:/, '');
         filePath = filePath.replaceAll("/", "\\");
     }
-
+    insertFileAccessLog(filePath, true);
     window.electronAPI.openFile(filePath);
     return;
+}
+
+function insertFileAccessLog(filePath, isDirectory) {
+    var loginUser = $.trim($('#whoami').text());
+    var macaddress = $.trim($('#macaddress').text());
+    fetch(window.API_ENDPOINT + '/endpoint/file_access.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            "loginUser": loginUser,
+            "macAddress": macaddress,
+            "filePath": filePath,
+            "isDirectory": false
+        }),
+    });
 }
 
 $("#filetype").focus(function(){
