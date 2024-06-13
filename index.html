@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
   <head>
@@ -11,10 +12,17 @@
 
   <body>
     <div id="header">
+      <!-- Language Selector -->
+      <div style="text-align: right;">
+        <select id="language-selector">
+          <option value="jp" selected>🇯🇵 日本語</option>
+          <option value="en">🇬🇧 English</option>
+        </select>
+      </div>
       <form id="searchForm">
         <div class="wrapper">
-          <div style="text-align: center;">Hello, <b id="whoami">guest</b>!</div>
-          <div id="macaddress" style="display: none;">MAC Address will be displayed here</div>
+          <div style="text-align: center;"><span data-localize="hello">Hello</span>, <b id="whoami">guest</b>!</div>
+          <div id="macaddress" style="display: none;"></div>
           <div class="logo-container">
             <div class="logo-n cinzel-decorative-bold">N-Search</div>
             <div class="version-text">v<span id="appVersion"></span></div>
@@ -28,11 +36,12 @@
           </div>
           <br>
           <div class="flex-container">
-            <input type="radio" name="mimetype" value="all" checked>All
-            <input type="radio" name="mimetype" value="images">Images
-            <input type="radio" name="mimetype" value="pdf">PDF
-            <input type="radio" name="mimetype" value="videos">Videos
-            <input type="radio" name="mimetype" value="filetype">Other: <input id="filetype" class="input-text" type="text" name="filetype" placeholder="filetype" value=""/>
+            <input type="radio" name="mimetype" value="all" checked><span data-localize="all">All</span>
+            <input type="radio" name="mimetype" value="images"><span data-localize="images">Images</span>
+            <input type="radio" name="mimetype" value="pdf"><span data-localize="pdf">PDF</span>
+            <input type="radio" name="mimetype" value="videos"><span data-localize="videos">Videos</span>
+            <input type="radio" name="mimetype" value="filetype"><span data-localize="other">Other</span>
+            <input id="filetype" class="input-text" type="text" name="filetype" placeholder="filetype" value="" />
           </div>
           <br>
           <div id="popularWords" style="text-align: center;"></div>

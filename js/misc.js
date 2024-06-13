@@ -76,14 +76,21 @@ $("#filetype").focus(function(){
 
 function showPopularWords() {
     query = window.API_ENDPOINT + "/endpoint/history.php";
+    var popularWordsLang = 'Popular Words';
     var $popularWords = $('#popularWords');
+    const selectedLanguage = $('#language-selector').val();
+    console.log(selectedLanguage);
+    if (selectedLanguage == 'jp') {
+        popularWordsLang = '最も検索された単語'
+    };
+
     $.ajax({
         url: query,
         dataType: "json",
         success: function(data) {
             if(data && data.data.length > 0) {
                 buf = [];
-                buf.push('<b>Popular Words:</b>');
+                buf.push(`<b data-localize="popularWords">${popularWordsLang}</b>:`);
                 data.data.map(
                     function(item) {
                         buf.push(`<button class="link" onclick="putToSearchBox('${item.keyword}')">${item.keyword}</button>`);
@@ -97,3 +104,34 @@ function showPopularWords() {
         }
     });
 }
+
+$(document).ready(function() {
+    const $languageSelector = $('#language-selector');
+    const $elementsToTranslate = $('[data-localize]');
+
+    // Function to fetch JSON and apply translations
+    const applyTranslations = (language) => {
+        const url = `lang/${language}.json`;
+        $.getJSON(url, function(translations) {
+            $elementsToTranslate.each(function() {
+                console.log(this);
+                const $element = $(this);
+                const key = $element.data('localize');
+                if (translations[key]) {
+                    $element.text(translations[key]);
+                }
+            });
+        }).fail(function() {
+            console.error('Error fetching translations from ' + url);
+        });
+    };
+
+    // Event listener for language selection
+    $languageSelector.on('change', function() {
+        const selectedLanguage = $(this).val();
+        applyTranslations(selectedLanguage);
+    });
+
+    const selectedLanguage = $('#language-selector').val();
+    applyTranslations(selectedLanguage);
+});
