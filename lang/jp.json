@@ -4,6 +4,6 @@
     "images": "画像",
     "pdf": "PDF",
     "videos": "ビデオ",
-    "others": "その他",
-    "s": "最も検索された単語"
+    "other": "その他",
+    "popularWords": "最も検索された単語"
 }
