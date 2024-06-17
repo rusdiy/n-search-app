@@ -4,21 +4,23 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>N-Search</title>
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font.css">
     <link rel="stylesheet" href="css/search-n.css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css">
     <link rel="icon" href="icon.ico">
   </head>
 
   <body>
     <div id="header">
       <!-- Language Selector -->
-      <div style="text-align: right;">
-        <select id="language-selector">
+      <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1"></span>
+        <select id="language-selector" class="selectpicker mx-2" name="lang" data-width="fit">
           <option value="jp" selected>🇯🇵 日本語</option>
           <option value="en">🇬🇧 English</option>
         </select>
-      </div>
+      </nav>
       <form id="searchForm">
         <div class="wrapper">
           <div style="text-align: center;"><span data-localize="hello">Hello</span>, <b id="whoami">guest</b>!</div>
@@ -52,6 +54,7 @@
     <div id="result"></div>
     <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="js/config.js"></script>
     <script type="text/javascript" src="js/misc.js"></script>
     <script type="text/javascript" src="js/fess.js"></script>
