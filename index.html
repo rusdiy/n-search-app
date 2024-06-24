@@ -12,7 +12,7 @@
   </head>
 
   <body>
-    <div id="header">
+    <div id="header" class="fixed-top bg-white p-0">
       <!-- Language Selector -->
       <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1"></span>
@@ -36,7 +36,6 @@
               <img class="icon" style="width: 20px;" src="internal/icon/search-solid.svg" />
             </button>
           </div>
-          <br>
           <div class="flex-container">
             <input type="radio" name="mimetype" value="all" checked><span data-localize="all">All</span>
             <input type="radio" name="mimetype" value="images"><span data-localize="images">Images</span>
@@ -45,13 +44,14 @@
             <input type="radio" name="mimetype" value="filetype"><span data-localize="other">Other</span>
             <input id="filetype" class="input-text" type="text" name="filetype" placeholder="filetype" value="" />
           </div>
-          <br>
           <div id="popularWords" style="text-align: center;"></div>
         </div>
       </form>
     </div>
-    <div id="subheader" class="flex-container"></div>
-    <div id="result"></div>
+    <div id="container" style="margin-top: 20rem;">
+      <div id="subheader" class="flex-container"></div>
+      <div id="result"></div>
+    </div>
     <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
