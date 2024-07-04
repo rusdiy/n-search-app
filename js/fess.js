@@ -69,7 +69,7 @@ $(function(){
         dataType: 'json',
         timeout: 600000, // Set a timeout in milliseconds (10 seconds in this case)
       }).done(function(data) {
-          displaySearchResults(data);
+          displaySearchResults(data, activeTab);
       }).fail(function(jqXHR, textStatus, errorThrown) {
           if (textStatus === 'timeout') {
               errorThrown = "Timeout";
@@ -95,7 +95,7 @@ $(function(){
   }
 
   // Display search results
-  var displaySearchResults = function(data) {
+  var displaySearchResults = function(data, activeTab) {
     var $subheader = $('#subheader'),
         $result = $('#result'),
         record_count = data.data.length,
@@ -121,11 +121,15 @@ $(function(){
       $subheader.html(buf.join(""));
       $result.empty();
       
+      var listClass = "";
       // Display search result items
-      var $resultBody = $(`<ol start="${startRange}" />`);
+      if (activeTab == "images") {
+        listClass = "grid-list flex-container";
+      }
+      var $resultBody = $(`<ol class="${listClass}" start="${startRange}" />`);
       var results = data.data;
       for (var i = 0, max = results.length; i < max; i++) {
-          var itemHtml = buildSearchResultItem(results[i]);
+          var itemHtml = buildSearchResultItem(results[i], activeTab);
           $resultBody.append(itemHtml);
       }
 
@@ -149,28 +153,49 @@ $(function(){
   };
 
   // Function to build HTML for a search result item
-  var buildSearchResultItem = function(result) {
+  var buildSearchResultItem = function(result, activeTab) {
     
     var buf = [];
-    buf.push(
-      '<table style="width: 100%;">',
-      '<tr style="vertical-align: top;">',
-      '<td align="justify">',
-      '<li>',
-      '<h3>',
-      `<button class="link" onclick="openFile('${result.url_link}')">${result.title}</button>`,
-      '</h3>',
-      '<div class="body">', result.content_description, '</div>',
-      `<p><cite>${result.site}</cite></p>`,
-      '</td>',
-      '<td align="right">',
-      `<button class="btn" onclick="openDir('${result.url_link}')">`,
-      '<img class="icon" src="internal/icon/folder-open-solid.svg" />',
-      `</button>`,
-      '</li>',
-      '</td>',
-      '</tr>',
-      '</table>',);
+    switch (activeTab) {
+      case "images":
+        buf.push(
+          '<li>',
+          '<div class="image-container">',
+          `<img class="image-block" src="${result.url_link}" />`,
+          '<div class="image-overlay">',
+          `<button class="link" onclick="openFile('${result.url_link}')">${result.title}</button>`,
+          '<br/>',
+          `<button class="btn" onclick="openDir('${result.url_link}')">`,
+          '<img class="icon" src="internal/icon/folder-open-solid.svg" />',
+          `</button>`,
+          '</div>',
+          '</div>',
+          '</li>',
+        );
+        break;
+      default:
+        buf.push(
+          '<table style="width: 100%;">',
+          '<tr style="vertical-align: top;">',
+          '<td align="justify">',
+          '<li>',
+          '<h3>',
+          `<button class="link" onclick="openFile('${result.url_link}')">${result.title}</button>`,
+          '</h3>',
+          '<div class="body">', result.content_description, '</div>',
+          `<p><cite>${result.site}</cite></p>`,
+          '</td>',
+          '<td align="right">',
+          `<button class="btn" onclick="openDir('${result.url_link}')">`,
+          '<img class="icon" src="internal/icon/folder-open-solid.svg" />',
+          `</button>`,
+          '</li>',
+          '</td>',
+          '</tr>',
+          '</table>',);
+        break;
+    }
+    
     return buf.join("");
   };
 

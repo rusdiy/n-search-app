@@ -70,7 +70,7 @@ body {
   cursor: pointer;
   outline: inherit;
   text-decoration: underline;
-  text-align: justify;
+  text-align: inherit;
   color: blue;
 }
 
@@ -144,6 +144,47 @@ body {
   font-size: 0.75rem;
   color: #000;
   border-radius: 3px;
+}
+
+/* Image Overlay */
+.grid-list {
+  list-style-type: none;
+  gap: 10px;
+  display: inline-flex;
+  flex-wrap:wrap;
+}
+
+.image-container {
+  position: relative;
+  width: 15rem;
+  height: 15rem;
+  object-fit: cover;
+}
+
+.image-block {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.image-overlay {
+  position: absolute; 
+  bottom: 0; 
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  width: 100%;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 12px;
+  padding: 10px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.image-container:hover .image-overlay {
+  opacity: 1;
 }
 
 #result {
