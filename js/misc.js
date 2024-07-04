@@ -79,7 +79,6 @@ function showPopularWords() {
     var popularWordsLang = 'Popular Words';
     var $popularWords = $('#popularWords');
     const selectedLanguage = $('#language-selector').val();
-    console.log(selectedLanguage);
     if (selectedLanguage == 'jp') {
         popularWordsLang = '最も検索された単語'
     };
@@ -114,7 +113,6 @@ $(document).ready(function() {
         const url = `lang/${language}.json`;
         $.getJSON(url, function(translations) {
             $elementsToTranslate.each(function() {
-                console.log(this);
                 const $element = $(this);
                 const key = $element.data('localize');
                 if (translations[key]) {

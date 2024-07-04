@@ -32,10 +32,9 @@ body {
 }
 .wrapper {
   width: 100%;
-  max-width: 31.25rem;
-  margin: 6rem auto;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  max-width: 75vw;
+  margin: auto;
+  margin-top: 0.5rem;
 }
 
 /* Tab */
