@@ -186,6 +186,13 @@ body {
   opacity: 1;
 }
 
+/* Video Overlay */
+.video-list {
+  list-style-type: none;
+  padding: 2rem;
+  border-width: 1px;
+}
+
 #result {
   margin-left: 5rem;
   margin-right: 5rem;
@@ -203,6 +210,8 @@ body {
   flex-direction: row;
   align-items: center;
 }
+
+#ui-id-1 {z-index: 9999 !important;}
 
 #searchQuery {
   width: 100%;

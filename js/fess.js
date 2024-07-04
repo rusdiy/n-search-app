@@ -121,7 +121,7 @@ $(function(){
       $subheader.html(buf.join(""));
       $result.empty();
       
-      var listClass = "";
+      var listClass = "video-list";
       // Display search result items
       if (activeTab == "images") {
         listClass = "grid-list flex-container";
@@ -170,6 +170,28 @@ $(function(){
           `</button>`,
           '</div>',
           '</div>',
+          '</li>',
+        );
+        break;
+      case "videos":
+        buf.push(
+          '<li>',
+          `<button class="link" onclick="openFile('${result.url_link}')">${result.title}</button>`,
+          '<table style="width: 100%;">',
+          '<tr style="vertical-align: top; height: 8vw;">',
+          '<td align="justify" style="width: 8vw;">',
+          `<video controls><source src="${result.url_link}" type="${result.mimetype}"/></video>`,
+          '</td>',
+          '<td align="left" style="padding-left: 20px;">',
+          '</h3>',
+          '<div class="body">', result.content_description, '</div>',
+          `<p><cite>${result.site}</cite></p>`,
+          `<button class="btn" onclick="openDir('${result.url_link}')">`,
+          '<img class="icon" src="internal/icon/folder-open-solid.svg" />',
+          `</button>`,
+          '</td>',
+          '</tr>',
+          '</table>',
           '</li>',
         );
         break;
