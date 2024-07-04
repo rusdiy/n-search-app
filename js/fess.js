@@ -180,7 +180,7 @@ $(function(){
           '<table style="width: 100%;">',
           '<tr style="vertical-align: top; height: 8vw;">',
           '<td align="justify" style="width: 8vw;">',
-          `<video controls><source src="${result.url_link}" type="${result.mimetype}"/></video>`,
+          `<video height="144" width="256" controls><source src="${result.url_link}" type="${result.mimetype}"/></video>`,
           '</td>',
           '<td align="left" style="padding-left: 20px;">',
           '</h3>',
