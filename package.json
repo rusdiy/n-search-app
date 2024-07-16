@@ -16,13 +16,17 @@
     "electron-packager": "^17.1.2"
   },
   "dependencies": {
-    "macaddress": "^0.5.3"
+    "dist-exiftool": "^10.53.0",
+    "macaddress": "^0.5.3",
+    "node-exiftool": "^2.3.0"
   },
   "build": {
     "productName": "N-Search",
     "appId": "n_search_app",
     "win": {
-      "target": ["portable"]
+      "target": [
+        "portable"
+      ]
     },
     "portable": {
       "artifactName": "n-search.exe"

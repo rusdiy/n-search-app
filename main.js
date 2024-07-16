@@ -3,6 +3,8 @@ const { exec } = require('child_process');
 const path = require('path');
 const os = require('os');
 const macaddress = require('macaddress');
+const exiftool = require('node-exiftool')
+const exiftoolBin = require('dist-exiftool')
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -74,6 +76,12 @@ app.on('activate', () => {
 ipcMain.on('open-file', (event, filePath) => {
   const platform = os.platform();
   let command;
+  const ep = new exiftool.ExiftoolProcess(exiftoolBin)
+  ep.open()
+  .then(() => ep.readMetadata(filePath, ['-File:all']))
+  .then(console.log, console.error)
+  .then(() => ep.close())
+  .catch(console.error)
 
   if (platform === 'win32') {
     command = `start "" "${filePath}"`;
