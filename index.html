@@ -52,6 +52,22 @@
     <div id="container" style="padding-top: 17rem;">
       <div id="result"></div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="editMetadataModal" tabindex="-1" aria-labelledby="editMetadataLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="editMetadataTitle">Edit Metadata</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="metadata"></div>
+          <div class="modal-footer">
+            <button type="button" id="cancelEditMetadata" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" id="saveMetadata" class="btn btn-primary" disabled>Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>

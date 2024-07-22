@@ -100,3 +100,26 @@ ipcMain.on('open-file', (event, filePath) => {
     }
   });
 });
+
+ipcMain.on('get-metadata', (event, filePath) => {
+  const ep = new exiftool.ExiftoolProcess(exiftoolBin)
+  ep.open()
+    .then(() => ep.readMetadata(filePath, ['-File:all']))
+    .then((res) => {
+      data = res.data[0];
+      data['FilePath'] = filePath;
+      event.sender.send('show-metadata', data);
+    })
+    .then(() => ep.close())
+    .catch(console.error)
+});
+
+ipcMain.on('set-metadata', (event, metadata) => {
+  filePath = metadata['FilePath'];
+  delete metadata['FilePath'];
+  const ep = new exiftool.ExiftoolProcess(exiftoolBin)
+  ep.open()
+    .then(() => ep.writeMetadata(filePath, metadata))
+    .then(() => ep.close())
+    .catch(console.error)
+})

@@ -85,14 +85,15 @@ body {
 }
 
 /* Button Link */
-.btn {
+.btn-icon {
   background: white;
   border: none;
   font: inherit;
   cursor: pointer;
+  margin: 1px;
 }
 
-.btn img {
+.btn-icon img {
   width: 1em;
   height: 1em;
   margin: 1px;

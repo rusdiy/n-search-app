@@ -133,3 +133,43 @@ $(document).ready(function() {
     const selectedLanguage = $('#language-selector').val();
     applyTranslations(selectedLanguage);
 });
+
+function getMetadata(filePath) {
+    metadata = $("#metadata");
+    metadata.empty();
+    buf = [];
+    buf.push(
+        "<p>Loading...</p>",
+        "<img src='internal/loading.gif' style='width: 50px; height: 50px; />"
+    );
+    metadata.html(buf.join());
+    if (filePath.startsWith("file://")) {
+        filePath = filePath.replace(/^file:/, '');
+        filePath = filePath.replace(/^\/\/\/([A-Za-z]:)/, '$1');
+        filePath = filePath.replaceAll("/", "\\");
+    }
+    window.electronAPI.getMetadata(filePath);
+    return;
+}
+
+$(document).ready(function() {
+    $('#saveMetadata').click(function() {
+        var formData = $('#updateMetadataForm').serializeArray();
+        var formDataObj = {};
+        $.each(formData, function(i, field) {
+            formDataObj[field.name] = field.value;
+        });
+        window.electronAPI.setMetadata(formDataObj);
+        $('#metadata').empty();
+        $('#metadata').append('<p>Metadata saved</p>');
+        $('#saveMetadata').prop('disabled', true);
+        setTimeout(function(){
+            $('#editMetadataModal').modal('hide')
+        }, 1500);
+    });
+
+    $('#cancelEditMetadata').click(function() {
+        $('#metadata').empty();
+        $('#saveMetadata').prop('disabled', true);
+    });
+});
