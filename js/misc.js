@@ -34,6 +34,7 @@ function putToSearchBox(text) {
 function openFile(filePath) {
     if (filePath.startsWith("file://")) {
         filePath = filePath.replace(/^file:/, '');
+        filePath = filePath.replace(/^\/\/\/([A-Za-z]:)/, '$1');
         filePath = filePath.replaceAll("/", "\\");
     }
     insertFileAccessLog(filePath, false);
@@ -45,6 +46,7 @@ function openDir(filePath) {
     filePath = filePath.substring(0, filePath.lastIndexOf('/'));
     if (filePath.startsWith("file://")) {
         filePath = filePath.replace(/^file:/, '');
+        filePath = filePath.replace(/^\/\/\/([A-Za-z]:)/, '$1');
         filePath = filePath.replaceAll("/", "\\");
     }
     insertFileAccessLog(filePath, true);

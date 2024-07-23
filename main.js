@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { exec } = require('child_process');
 const path = require('path');
+const fs = require('fs');
 const os = require('os');
 const macaddress = require('macaddress');
 const exiftool = require('node-exiftool')
@@ -77,11 +78,6 @@ ipcMain.on('open-file', (event, filePath) => {
   const platform = os.platform();
   let command;
   const ep = new exiftool.ExiftoolProcess(exiftoolBin)
-  ep.open()
-  .then(() => ep.readMetadata(filePath, ['-File:all']))
-  .then(console.log, console.error)
-  .then(() => ep.close())
-  .catch(console.error)
 
   if (platform === 'win32') {
     command = `start "" "${filePath}"`;
@@ -103,8 +99,9 @@ ipcMain.on('open-file', (event, filePath) => {
 
 ipcMain.on('get-metadata', (event, filePath) => {
   const ep = new exiftool.ExiftoolProcess(exiftoolBin)
+  const rs = fs.createReadStream(filePath);
   ep.open()
-    .then(() => ep.readMetadata(filePath, ['-File:all']))
+    .then(() => ep.readMetadata(rs, ['-File:all']))
     .then((res) => {
       data = res.data[0];
       data['FilePath'] = filePath;
