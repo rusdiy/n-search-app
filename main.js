@@ -1,11 +1,9 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { exec } = require('child_process');
 const path = require('path');
-const fs = require('fs');
 const os = require('os');
 const macaddress = require('macaddress');
-const exiftool = require('node-exiftool')
-const exiftoolBin = require('dist-exiftool')
+const ExifTool = require("exiftool-vendored").ExifTool
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -77,7 +75,6 @@ app.on('activate', () => {
 ipcMain.on('open-file', (event, filePath) => {
   const platform = os.platform();
   let command;
-  const ep = new exiftool.ExiftoolProcess(exiftoolBin)
 
   if (platform === 'win32') {
     command = `start "" "${filePath}"`;
@@ -98,25 +95,34 @@ ipcMain.on('open-file', (event, filePath) => {
 });
 
 ipcMain.on('get-metadata', (event, filePath) => {
-  const ep = new exiftool.ExiftoolProcess(exiftoolBin)
-  const rs = fs.createReadStream(filePath);
-  ep.open()
-    .then(() => ep.readMetadata(rs, ['-File:all']))
-    .then((res) => {
-      data = res.data[0];
+  const exiftool = new ExifTool({ taskTimeoutMillis: 50000 });
+  exiftool
+    .read(filePath)
+    .then((data) => {
       data['FilePath'] = filePath;
       event.sender.send('show-metadata', data);
     })
-    .then(() => ep.close())
-    .catch(console.error)
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      exiftool.end();
+    });
 });
 
 ipcMain.on('set-metadata', (event, metadata) => {
   filePath = metadata['FilePath'];
   delete metadata['FilePath'];
-  const ep = new exiftool.ExiftoolProcess(exiftoolBin)
-  ep.open()
-    .then(() => ep.writeMetadata(filePath, metadata))
-    .then(() => ep.close())
-    .catch(console.error)
+  const exiftool = new ExifTool({ taskTimeoutMillis: 50000 });
+  exiftool
+    .write(filePath, metadata)
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      exiftool.end();
+    });
 })
