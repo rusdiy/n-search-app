@@ -142,7 +142,7 @@ function getMetadata(filePath) {
     buf = [];
     buf.push(
         "<p>Loading...</p>",
-        "<img src='internal/loading.gif' style='width: 50px; height: 50px; />"
+        "<img src='internal/loading.gif' style='width: 50px; height: 50px;' />"
     );
     metadata.html(buf.join());
     if (filePath.startsWith("file://")) {
@@ -163,11 +163,13 @@ $(document).ready(function() {
         });
         window.electronAPI.setMetadata(formDataObj);
         $('#metadata').empty();
-        $('#metadata').append('<p>Metadata saved</p>');
+        buf = [];
+        buf.push(
+            "<p>Processing...</p>",
+            "<img src='internal/loading.gif' style='width: 50px; height: 50px;' />"
+        );
+        $('#metadata').html(buf.join());
         $('#saveMetadata').prop('disabled', true);
-        setTimeout(function(){
-            $('#editMetadataModal').modal('hide')
-        }, 1500);
     });
 
     $('#cancelEditMetadata').click(function() {

@@ -118,6 +118,7 @@ ipcMain.on('set-metadata', (event, metadata) => {
     .write(filePath, metadata)
     .then((res) => {
       console.log(res)
+      event.sender.send('metadata-set', res);
     })
     .catch((err) => {
       console.error(err);

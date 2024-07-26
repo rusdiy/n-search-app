@@ -39,3 +39,15 @@ window.electronAPI.showMetadata((result) => {
   $('#metadata').html(buf.join(''));
   $('#saveMetadata').prop('disabled', false);
 })
+
+window.electronAPI.metadataSet((result) => {
+  console.log(result["updated"]);
+  if (result["updated"] > 0) {
+    $('#metadata').html('<p>Metadata updated</p>');
+  } else {
+    $('#metadata').html('<p>No metadata updated</p>');
+  }
+  setTimeout(function(){
+    $('#editMetadataModal').modal('hide')
+  }, 1500);
+})

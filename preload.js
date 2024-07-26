@@ -12,4 +12,5 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getMetadata: (filePath) => ipcRenderer.send('get-metadata', filePath),
   showMetadata: (callback) => ipcRenderer.on('show-metadata', (event, result) => callback(result)),
   setMetadata: (metadata) => ipcRenderer.send('set-metadata', metadata),
+  metadataSet: (callback) => ipcRenderer.on('metadata-set', (event, result) => callback(result)),
 });
