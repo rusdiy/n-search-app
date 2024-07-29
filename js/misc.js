@@ -108,11 +108,11 @@ function showPopularWords() {
 
 $(document).ready(function() {
     const $languageSelector = $('#language-selector');
-    const $elementsToTranslate = $('[data-localize]');
 
     // Function to fetch JSON and apply translations
     const applyTranslations = (language) => {
         const url = `lang/${language}.json`;
+        const $elementsToTranslate = $('[data-localize]');
         $.getJSON(url, function(translations) {
             $elementsToTranslate.each(function() {
                 const $element = $(this);
