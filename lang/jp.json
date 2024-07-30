@@ -5,5 +5,8 @@
     "pdf": "PDF",
     "videos": "ビデオ",
     "other": "その他",
-    "popularWords": "最も検索された単語"
+    "popularWords": "最も検索された単語",
+    "edit-metadata": "メタデータを編集",
+    "close": "閉じる",
+    "save": "変更を保存"
 }

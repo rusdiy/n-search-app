@@ -5,5 +5,8 @@
     "pdf": "PDF",
     "videos": "Videos",
     "other": "Other",
-    "popularWords": "Popular Words"
+    "popularWords": "Popular Words",
+    "edit-metadata": "Edit Metadata",
+    "close": "Close",
+    "save": "Save Changes"
 }
