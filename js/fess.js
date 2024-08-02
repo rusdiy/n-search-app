@@ -101,11 +101,14 @@ $(function(){
         record_count = data.data.length,
         offset = 0,
         buf = [];
-    
+    const selectedLanguage = $('#language-selector').val();
+    const lang = getLang(selectedLanguage);
     if(record_count == 0) {
       $subheader.empty();
-      buf.push("<h2><b>", data.q, "</b></h2>");
-      buf.push("<p><b>No information was found matching </b>.</p>")
+      buf.push(
+        `<h2><b>${data.q}</b></h2>`,
+        `<p><b data-localize='no-results'>${lang['no-results']}</b></p>`
+      )
       $result.html(buf.join(""));
     } else {
       var page_number = data.page_number,
@@ -115,9 +118,16 @@ $(function(){
           max;
       
       offset = startRange - 1;
-      buf.push("Results <b>", startRange, "</b> - <b>", endRange,
-          "</b> of <b>", record_count, "</b> for <b>", data.q,
-          "</b> (", data.exec_time," sec)");
+      buf.push(
+        `<span data-localize='results-search'>${lang["results-search"]}</span> `,
+        `<b>${startRange}</b>`,
+        ` - `,
+        `<b>${endRange}</b> `,
+        `<span data-localize='of-search'>${lang['of-search']}</span> `,
+        `<b>${record_count}</b> `,
+        `<span data-localize='for-search'>${lang["for-search"]}</span> `,
+        `<b>${data.q}</b>`,
+        `(${data.exec_time} <span data-localize='seconds'>${lang["seconds"]}</span>)`);
       $subheader.html(buf.join(""));
       $result.empty();
       

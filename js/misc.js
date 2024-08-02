@@ -81,9 +81,8 @@ function showPopularWords() {
     var popularWordsLang = 'Popular Words';
     var $popularWords = $('#popularWords');
     const selectedLanguage = $('#language-selector').val();
-    if (selectedLanguage == 'jp') {
-        popularWordsLang = '最も検索された単語'
-    };
+    const lang = getLang(selectedLanguage);
+    popularWordsLang = lang['popularWords'];
 
     $.ajax({
         url: query,
@@ -111,18 +110,14 @@ $(document).ready(function() {
 
     // Function to fetch JSON and apply translations
     const applyTranslations = (language) => {
-        const url = `lang/${language}.json`;
         const $elementsToTranslate = $('[data-localize]');
-        $.getJSON(url, function(translations) {
-            $elementsToTranslate.each(function() {
-                const $element = $(this);
-                const key = $element.data('localize');
-                if (translations[key]) {
-                    $element.text(translations[key]);
-                }
-            });
-        }).fail(function() {
-            console.error('Error fetching translations from ' + url);
+        translations = getLang(language);
+        $elementsToTranslate.each(function() {
+            const $element = $(this);
+            const key = $element.data('localize');
+            if (translations[key]) {
+                $element.text(translations[key]);
+            }
         });
     };
 
