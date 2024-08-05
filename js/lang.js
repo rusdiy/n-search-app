@@ -14,7 +14,9 @@ const lang = {
         "of-search": "件中",
         "for-search": "件",
         "seconds": "秒",
-        "no-results": "該当する情報はありません。"
+        "no-results": "該当する情報はありません。",
+        "open-file": "ファイルを開く",
+        "open-dir": "ディレクトリを開く",
     },
     en: {
         "hello": "Hello",
@@ -31,7 +33,9 @@ const lang = {
         "of-search": "of",
         "for-search": "for",
         "seconds": "sec",
-        "no-results": "No information was found matching."
+        "no-results": "No information was found matching.",
+        "open-file": "Open File",
+        "open-dir": "Open Directory",
     }
 }
 

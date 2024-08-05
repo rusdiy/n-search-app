@@ -139,7 +139,7 @@ $(function(){
       var $resultBody = $(`<ol class="${listClass}" start="${startRange}" />`);
       var results = data.data;
       for (var i = 0, max = results.length; i < max; i++) {
-          var itemHtml = buildSearchResultItem(results[i], activeTab);
+          var itemHtml = buildSearchResultItem(results[i], activeTab, lang);
           $resultBody.append(itemHtml);
       }
 
@@ -163,8 +163,11 @@ $(function(){
   };
 
   // Function to build HTML for a search result item
-  var buildSearchResultItem = function(result, activeTab) {
+  var buildSearchResultItem = function(result, activeTab, lang) {
     
+    const openFileTitle = lang["open-file"];
+    const openDirTitle = lang["open-dir"];
+    const editMetaDataTitle = lang["edit-metadata"];
     var buf = [];
     switch (activeTab) {
       case "images":
@@ -173,12 +176,12 @@ $(function(){
           '<div class="image-container">',
           `<img class="image-block" src="${result.url_link}" />`,
           '<div class="image-overlay">',
-          `<button class="link" title="Open File" onclick="openFile('${result.url_link}')">${result.title}</button>`,
+          `<button class="link" title="${openFileTitle}" onclick="openFile('${result.url_link}')">${result.title}</button>`,
           '<br/>',
-          `<button class="btn-icon" title="Edit Metadata" data-bs-toggle="modal" data-bs-target="#editMetadataModal" onclick="getMetadata('${result.url_link}')">`,
+          `<button class="btn-icon" title="${editMetaDataTitle}" data-bs-toggle="modal" data-bs-target="#editMetadataModal" onclick="getMetadata('${result.url_link}')">`,
           '<img class="icon" src="internal/icon/pen-to-square-solid.svg" />',
           '</button>',
-          `<button class="btn-icon" title="Open Directory" onclick="openDir('${result.url_link}')">`,
+          `<button class="btn-icon" title="${openDirTitle}" onclick="openDir('${result.url_link}')">`,
           '<img class="icon" src="internal/icon/folder-open-solid.svg" />',
           `</button>`,
           '</div>',
@@ -189,7 +192,7 @@ $(function(){
       case "videos":
         buf.push(
           '<li>',
-          `<button class="link" title="Open File" onclick="openFile('${result.url_link}')">${result.title}</button>`,
+          `<button class="link" title="${openFileTitle}" onclick="openFile('${result.url_link}')">${result.title}</button>`,
           '<table style="width: 100%;">',
           '<tr style="vertical-align: top; height: 8vw;">',
           '<td align="justify" style="width: 8vw;">',
@@ -199,10 +202,10 @@ $(function(){
           '</h3>',
           '<div class="body">', result.content_description, '</div>',
           `<p><cite>${result.site}</cite></p>`,
-          `<button class="btn-icon" title="Edit Metadata" data-bs-toggle="modal" data-bs-target="#editMetadataModal" onclick="getMetadata('${result.url_link}')">`,
+          `<button class="btn-icon" title="${editMetaDataTitle}" data-bs-toggle="modal" data-bs-target="#editMetadataModal" onclick="getMetadata('${result.url_link}')">`,
           '<img class="icon" src="internal/icon/pen-to-square-solid.svg" />',
           '</button>',
-          `<button class="btn-icon" title="Open Directory" onclick="openDir('${result.url_link}')">`,
+          `<button class="btn-icon" title="${openDirTitle}" onclick="openDir('${result.url_link}')">`,
           '<img class="icon" src="internal/icon/folder-open-solid.svg" />',
           `</button>`,
           '</td>',
@@ -218,13 +221,13 @@ $(function(){
           '<td align="justify">',
           '<li>',
           '<h3>',
-          `<button class="link" title="Open File" onclick="openFile('${result.url_link}')">${result.title}</button>`,
+          `<button class="link" title="${openFileTitle}" onclick="openFile('${result.url_link}')">${result.title}</button>`,
           '</h3>',
           '<div class="body">', result.content_description, '</div>',
           `<p><cite>${result.site}</cite></p>`,
           '</td>',
           '<td align="right">',
-          `<button class="btn-icon" title="Open Directory" onclick="openDir('${result.url_link}')">`,
+          `<button class="btn-icon" title="${openDirTitle}" onclick="openDir('${result.url_link}')">`,
           '<img class="icon" src="internal/icon/folder-open-solid.svg" />',
           `</button>`,
           '</li>',
