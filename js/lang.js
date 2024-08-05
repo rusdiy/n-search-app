@@ -17,6 +17,9 @@ const lang = {
         "no-results": "該当する情報はありません。",
         "open-file": "ファイルを開く",
         "open-dir": "ディレクトリを開く",
+        "title": "タイトル",
+        "description": "説明",
+        "subject": "主題",
     },
     en: {
         "hello": "Hello",
@@ -36,6 +39,9 @@ const lang = {
         "no-results": "No information was found matching.",
         "open-file": "Open File",
         "open-dir": "Open Directory",
+        "title": "Title",
+        "description": "Description",
+        "subject": "Subject",
     }
 }
 
