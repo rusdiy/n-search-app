@@ -43,7 +43,6 @@ window.electronAPI.showMetadata((result) => {
 })
 
 window.electronAPI.metadataSet((result) => {
-  console.log(result["updated"]);
   if (result["updated"] > 0) {
     $('#metadata').html('<p>Metadata updated</p>');
   } else {
